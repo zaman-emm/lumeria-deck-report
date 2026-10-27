@@ -67,4 +67,5 @@ html{scroll-behavior:smooth}.case-slide,.gallery-section,.highlight-section{back
 
 /* The recap capture includes its own dark corner pixels; clip just this slide
    slightly further inside them while it rises over the preceding screen. */
-.screen-slide:last-child{border-radius:16% 16% 0 0 / 7.5% 7.5% 0 0}
+.screen-slide:last-child{border-radius:12.977% 12.977% 0 0 / 5.986% 5.986% 0 0;background:linear-gradient(100deg,#ab5941,#ae6544)}
+.screen-slide:last-child img{clip-path:inset(0 round 16% 16% 0 0 / 7.5% 7.5% 0 0)}
