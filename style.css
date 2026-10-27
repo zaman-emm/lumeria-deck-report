@@ -61,3 +61,6 @@ html{scroll-behavior:smooth}.case-slide,.gallery-section,.highlight-section{back
 .highlight-screen-track img:not(:first-child){transform:translate3d(0,100%,0)}
 @media(max-width:800px){.screen-slide{transition:transform 650ms cubic-bezier(.16,1,.3,1)}}
 @media(prefers-reduced-motion:reduce){.screen-slide,.highlight-screen-track img{transition:none}}
+
+/* Keep absolutely positioned screenshots inside their own phone frames. */
+.gallery-phone,.highlight-phone{position:relative}
