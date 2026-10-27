@@ -1,5 +1,5 @@
 (() => {
-  const labels=['Overview','Trends','Photos','Calendar','Your month'];
+  const labels=['Overview','Your scores','Trends','Photos','Calendar','Your month'];
   const tracks=[...document.querySelectorAll('.copy-track, .detail-track')];
   const screens=[...document.querySelectorAll('.screen-slide')];
   const stage=document.querySelector('#stage'), journey=document.querySelector('#tour-journey');
@@ -9,7 +9,7 @@
   const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
   function announce(i){
     const target=clamp(i,0,labels.length-1);if(target===index && status.dataset.ready)return;
-    index=target;status.dataset.ready='true';status.textContent=`${String(index+1).padStart(2,'0')} / 05 — ${labels[index]}`;
+    index=target;status.dataset.ready='true';status.textContent=`${String(index+1).padStart(2,'0')} / 06 — ${labels[index]}`;
     prev.disabled=index===0;next.disabled=index===labels.length-1;
     document.querySelectorAll('.copy-track .slide, .detail-track .slide').forEach((slide,j)=>slide.setAttribute('aria-hidden',j%labels.length===index?'false':'true'));
   }
