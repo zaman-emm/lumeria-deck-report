@@ -64,3 +64,7 @@ html{scroll-behavior:smooth}.case-slide,.gallery-section,.highlight-section{back
 
 /* Keep absolutely positioned screenshots inside their own phone frames. */
 .gallery-phone,.highlight-phone{position:relative}
+
+/* The recap capture includes its own dark corner pixels; clip just this slide
+   slightly further inside them while it rises over the preceding screen. */
+.screen-slide:last-child{border-radius:16% 16% 0 0 / 7.5% 7.5% 0 0}
