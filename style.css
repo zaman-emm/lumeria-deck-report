@@ -44,3 +44,20 @@ html{scroll-behavior:smooth}.case-slide,.gallery-section,.highlight-section{back
 .report-screenshot{margin:0;display:flex;justify-content:center}
 .report-screenshot img{display:block;width:auto;max-width:100%;height:min(72svh,852px);object-fit:contain}
 @media(max-width:800px){.report-screenshot img{height:auto;width:min(100%,393px)}}
+
+/* Each incoming screen covers the previous screen, keeping the phone still. */
+.phone:before{left:-3px}
+.phone:after{right:-3px}
+.screen-track{position:relative;transform:none!important}
+.screen-slide{position:absolute;inset:0;overflow:hidden;border-radius:8% 8% 0 0;will-change:transform}
+.screen-slide:nth-child(1),.highlight-screen-track img:nth-child(1){z-index:1}
+.screen-slide:nth-child(2),.highlight-screen-track img:nth-child(2){z-index:2}
+.screen-slide:nth-child(3),.highlight-screen-track img:nth-child(3){z-index:3}
+.screen-slide:nth-child(4){z-index:4}
+.screen-slide:nth-child(5){z-index:5}
+.screen-slide:not(:first-child){transform:translate3d(0,100%,0)}
+.highlight-screen-track{transform:none;transition:none}
+.highlight-screen-track img{position:absolute;inset:0;display:block;transition:transform 650ms cubic-bezier(.16,1,.3,1);border-radius:8% 8% 0 0}
+.highlight-screen-track img:not(:first-child){transform:translate3d(0,100%,0)}
+@media(max-width:800px){.screen-slide{transition:transform 650ms cubic-bezier(.16,1,.3,1)}}
+@media(prefers-reduced-motion:reduce){.screen-slide,.highlight-screen-track img{transition:none}}

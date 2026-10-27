@@ -1,6 +1,7 @@
 (() => {
   const labels=['Overview','Trends','Photos','Calendar','Your month'];
-  const tracks=[...document.querySelectorAll('.stage .track')];
+  const tracks=[...document.querySelectorAll('.copy-track, .detail-track')];
+  const screens=[...document.querySelectorAll('.screen-slide')];
   const stage=document.querySelector('#stage'), journey=document.querySelector('#tour-journey');
   const prev=document.querySelector('#prev'), next=document.querySelector('#next'), status=document.querySelector('#status');
   const hero=document.querySelector('#brief'), reduced=matchMedia('(prefers-reduced-motion: reduce)'), mobile=matchMedia('(max-width: 800px)');
@@ -12,7 +13,11 @@
     prev.disabled=index===0;next.disabled=index===labels.length-1;
     document.querySelectorAll('.copy-track .slide, .detail-track .slide').forEach((slide,j)=>slide.setAttribute('aria-hidden',j%labels.length===index?'false':'true'));
   }
-  function setPosition(pos){tracks.forEach(track=>track.style.transform=`translate3d(0, ${-100*pos}%, 0)`);announce(Math.round(pos));}
+  function setPosition(pos){
+    tracks.forEach(track=>track.style.transform=`translate3d(0, ${-100*pos}%, 0)`);
+    screens.forEach((screen,i)=>{screen.style.transform=`translate3d(0, ${clamp(i-pos,0,1)*100}%, 0)`;});
+    announce(Math.round(pos));
+  }
   function update(){
     scheduled=false;
     if(!mobile.matches){
@@ -60,7 +65,7 @@
   document.querySelectorAll('.highlight-choice').forEach(button=>button.addEventListener('click',()=>{
     const data=views[button.dataset.view];
     document.querySelectorAll('.highlight-choice').forEach(b=>{const active=b===button;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});
-    screen.querySelector('.highlight-screen-track').style.transform=`translate3d(0, -${data.position*100}%, 0)`;screen.setAttribute('aria-label',data.alt);tag.textContent=data.tag;description.textContent=data.description;
+    screen.querySelectorAll('.highlight-screen-track img').forEach((image,i)=>{image.style.transform=`translate3d(0, ${i<=data.position ? 0 : 100}%, 0)`;});screen.setAttribute('aria-label',data.alt);tag.textContent=data.tag;description.textContent=data.description;
   }));
   announce(0);requestUpdate();
 })();
